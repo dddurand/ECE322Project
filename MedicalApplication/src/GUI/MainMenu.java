@@ -35,7 +35,9 @@ public class MainMenu extends JPanel implements ActionListener {
 
 		/* buttons */
 		JPanel group = new JPanel();
-
+		group.setName("main_group");
+		
+		
 		prescription = new JToggleButton("Prescription");
 		prescription.addActionListener(this);
 		if (!MainWindow.DEBUG)
@@ -62,16 +64,26 @@ public class MainMenu extends JPanel implements ActionListener {
 
 		/* content panes */
 		prescription_pane = new PrescriptionPane();
+		prescription_pane.setName("prescription_pane");
+		
 		medical_test_pane = new MedicalTestPane();
+		medical_test_pane.setName("medical_test_pane");
+		
 		settings_pane = new Settings(this);
+		settings_pane.setName("settings_pane");
+		
 		patient_pane = new PatientPane();
+		patient_pane.setName("patient_pane");
+		
 		search_pane = new SearchPane();
+		search_pane.setName("search_pane");
 
 		activeContent = settings_pane;
 
 		/* footer */
 
 		footer = new JPanel();
+		footer.setName("footer");
 		footer_label = new JLabel("No Connection");
 		footer_label.setForeground(Color.RED);
 		footer_label.setFont(MainWindow.getFont());

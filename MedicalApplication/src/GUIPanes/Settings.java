@@ -30,6 +30,8 @@ public class Settings extends JPanel implements ActionListener {
 		menu = Mmenu; // Dirty hack, just to have access to menu methods used in
 						// connection
 
+		this.setName("Settings");
+		
 		GridLayout layout = new GridLayout(8, 2);
 		layout.setVgap(5);
 		this.setLayout(layout);

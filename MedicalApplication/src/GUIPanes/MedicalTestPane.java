@@ -52,6 +52,9 @@ public class MedicalTestPane extends JPanel implements ActionListener {
 
 	public MedicalTestPane() {
 		/* Search Mode */
+		
+		this.setName("MedicalTestPane");
+		
 		patient = new AutoCompleteJComboBox();
 		doctor = new AutoCompleteJComboBox();
 		test = new AutoCompleteJComboBox();

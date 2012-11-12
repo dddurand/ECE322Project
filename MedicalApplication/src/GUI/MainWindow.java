@@ -20,11 +20,16 @@ public class MainWindow implements WindowListener {
 
 	public MainWindow() {
 		window = new JFrame(windowName);
+		window.setName(windowName);
+
+		
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// Create and set up the content pane.
 		MainMenu mainMenu = new MainMenu();
 		mainMenu.setOpaque(true);
+		mainMenu.setName("main_menu_frame");
+		
 		window.setContentPane(mainMenu);
 
 		window.pack();
