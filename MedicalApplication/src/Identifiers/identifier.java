@@ -1,12 +1,11 @@
 package Identifiers;
 
-public class identifier {
-
+public class Identifier {
 	private String name;
 	private String id;
 	private char type;
 
-	public identifier(String id, String name, char type) {
+	public Identifier(String id, String name, char type) {
 		this.name = name;
 		this.id = id;
 		this.type = type;
@@ -36,9 +35,7 @@ public class identifier {
 		this.type = type;
 	}
 
-	// DUSTIN CHANGED NOV 7
 	public String toString() {
 		return this.id + ": " + this.name;
 	}
-
 }
