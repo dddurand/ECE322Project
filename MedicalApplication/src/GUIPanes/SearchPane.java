@@ -13,6 +13,7 @@ import GUI.MainWindow;
 import Identifiers.Search1Identifier;
 import Identifiers.Search2Identifier;
 import Identifiers.Search3Identifier;
+import Identifiers.SearchIdentifier;
 
 @SuppressWarnings("serial")
 public class SearchPane extends JPanel implements ActionListener {
@@ -40,20 +41,23 @@ public class SearchPane extends JPanel implements ActionListener {
 	JTable results;
 	JButton back;
 
-	public SearchPane() {
+	private final Database database;
+
+	public SearchPane(Database database) {
+		this.database = database;
 
 		/* Main Pane */
 		search1 = new JRadioButton("Search by Patient or Test");
 		search1.setSelected(true);
-		search1.setFont(MainWindow.getFont());
+		search1.setFont(MainWindow.FONT);
 		search1.addActionListener(this);
 
 		search2 = new JRadioButton("Search Doctor Prescriptions");
-		search2.setFont(MainWindow.getFont());
+		search2.setFont(MainWindow.FONT);
 		search2.addActionListener(this);
 
 		search3 = new JRadioButton("Search Alarming Age");
-		search3.setFont(MainWindow.getFont());
+		search3.setFont(MainWindow.FONT);
 		search3.addActionListener(this);
 
 		ButtonGroup group = new ButtonGroup();
@@ -76,12 +80,12 @@ public class SearchPane extends JPanel implements ActionListener {
 
 		/* Form pane */
 		search = new JButton("Search");
-		search.setFont(MainWindow.getFont());
+		search.setFont(MainWindow.FONT);
 		search.addActionListener(this);
 
 		/* Result */
 		back = new JButton("Back");
-		back.setFont(MainWindow.getFont());
+		back.setFont(MainWindow.FONT);
 		back.addActionListener(this);
 
 		this.renderMain();
@@ -124,12 +128,12 @@ public class SearchPane extends JPanel implements ActionListener {
 		form.removeAll();
 
 		JLabel label_patientName = new JLabel("Patient Name");
-		label_patientName.setFont(MainWindow.getFont());
+		label_patientName.setFont(MainWindow.FONT);
 		form.add(label_patientName);
 		form.add(patientName);
 
 		JLabel label_testType = new JLabel("Test Type");
-		label_testType.setFont(MainWindow.getFont());
+		label_testType.setFont(MainWindow.FONT);
 		form.add(label_testType);
 		form.add(testType);
 
@@ -159,17 +163,17 @@ public class SearchPane extends JPanel implements ActionListener {
 		form.removeAll();
 
 		JLabel label_doctorName = new JLabel("Doctor Name or ID");
-		label_doctorName.setFont(MainWindow.getFont());
+		label_doctorName.setFont(MainWindow.FONT);
 		form.add(label_doctorName);
 		form.add(doctor);
 
 		JLabel label_startDate = new JLabel("Start Date");
-		label_startDate.setFont(MainWindow.getFont());
+		label_startDate.setFont(MainWindow.FONT);
 		form.add(label_startDate);
 		form.add(startDate);
 
 		JLabel label_endDate = new JLabel("End Date");
-		label_endDate.setFont(MainWindow.getFont());
+		label_endDate.setFont(MainWindow.FONT);
 		form.add(label_endDate);
 		form.add(endDate);
 
@@ -196,7 +200,7 @@ public class SearchPane extends JPanel implements ActionListener {
 		form.removeAll();
 
 		JLabel label_testType = new JLabel("Test Type");
-		label_testType.setFont(MainWindow.getFont());
+		label_testType.setFont(MainWindow.FONT);
 		form.add(label_testType);
 		form.add(testType);
 
@@ -225,7 +229,7 @@ public class SearchPane extends JPanel implements ActionListener {
 		this.updateUI();
 	}
 
-	private void renderSearchResult(Vector resultSet) {
+	private void renderSearchResult(Vector<SearchIdentifier> resultSet) {
 		this.removeAll();
 
 		setLayout(new BorderLayout());
@@ -242,12 +246,10 @@ public class SearchPane extends JPanel implements ActionListener {
 			ptable.addColumn("Result");
 
 			for (int i = 0; i < resultSet.size(); i++) {
-				Search1Identifier row = (Search1Identifier) resultSet
-						.elementAt(i);
+				Search1Identifier row = (Search1Identifier) resultSet.elementAt(i);
 
-				ptable.addRow(new Object[] { row.get_patientName(),
-						row.get_testName(), row.get_testDate(),
-						row.get_result() });
+				ptable.addRow(new Object[] { row.getPatientName(), row.getTestName(),
+						row.getTestDate(), row.getResult() });
 			}
 
 			results.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -263,11 +265,10 @@ public class SearchPane extends JPanel implements ActionListener {
 			ptable.addColumn("Prescribe Date");
 
 			for (int i = 0; i < resultSet.size(); i++) {
-				Search2Identifier row = (Search2Identifier) resultSet
-						.elementAt(i);
+				Search2Identifier row = (Search2Identifier) resultSet.elementAt(i);
 
-				ptable.addRow(new Object[] { row.get_patientName(),
-						row.get_testName(), row.get_prescribeDate() });
+				ptable.addRow(new Object[] { row.getPatientName(), row.getTestName(),
+						row.getPrescribeDate() });
 			}
 
 			results.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -282,12 +283,10 @@ public class SearchPane extends JPanel implements ActionListener {
 			ptable.addColumn("Phone");
 
 			for (int i = 0; i < resultSet.size(); i++) {
-				Search3Identifier row = (Search3Identifier) resultSet
-						.elementAt(i);
+				Search3Identifier row = (Search3Identifier) resultSet.elementAt(i);
 
-				ptable.addRow(new Object[] { row.get_patientName(),
-						row.get_patientName(), row.get_address(),
-						row.get_phone() });
+				ptable.addRow(new Object[] { row.getPatientName(), row.getPatientName(),
+						row.getAddress(), row.getPhone() });
 			}
 
 			results.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -321,7 +320,7 @@ public class SearchPane extends JPanel implements ActionListener {
 			selectedMode = 3;
 			this.renderSearch3();
 		} else if (e.getSource() == search) {
-			Vector arguments = new Vector();
+			Vector<Object> arguments = new Vector<Object>();
 			if (this.selectedMode == 1) {
 				arguments.add(patientName.getText());
 				arguments.add(testType.getText());
@@ -332,7 +331,7 @@ public class SearchPane extends JPanel implements ActionListener {
 			} else if (this.selectedMode == 3) {
 				arguments.add(testType.getText());
 			}
-			Vector results = Database.searchPane(selectedMode, arguments);
+			Vector<SearchIdentifier> results = database.searchPane(selectedMode, arguments);
 
 			this.renderSearchResult(results);
 		} else if (e.getSource() == back)

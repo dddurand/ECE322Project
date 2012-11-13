@@ -1,6 +1,6 @@
 package Identifiers;
 
-public class Search3Identifier {
+public class Search3Identifier implements SearchIdentifier {
 	private String patientName;
 	private String address;
 	private String phone;
@@ -11,15 +11,15 @@ public class Search3Identifier {
 		this.phone = ph;
 	}
 
-	public String get_patientName() {
+	public String getPatientName() {
 		return this.patientName;
 	}
 
-	public String get_address() {
+	public String getAddress() {
 		return this.address;
 	}
 
-	public String get_phone() {
+	public String getPhone() {
 		return this.phone;
 	}
 }

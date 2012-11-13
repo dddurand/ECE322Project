@@ -20,24 +20,25 @@ import GUIPanes.Settings;
 @SuppressWarnings("serial")
 public class MainMenu extends JPanel implements ActionListener {
 
-	protected JToggleButton prescription, medicalTest, patientInformation,
-			search, settings;
-	protected JPanel activeContent;
+	private final JToggleButton prescription, medicalTest, patientInformation, search, settings;
+	private final JPanel prescription_pane, medical_test_pane, settings_pane, patient_pane,
+			search_pane;
 
-	protected JPanel prescription_pane, medical_test_pane, settings_pane,
-			patient_pane, search_pane;
+	private final Database database;
 
-	public JLabel footer_label;
-	public JPanel footer;
+	private JPanel activeContent = null;
 
-	public MainMenu() {
+	public final JPanel footer;
+	public final JLabel footer_label;
+
+	public MainMenu(Database database) {
+		this.database = database;
 		super.setLayout(new BorderLayout());
 
 		/* buttons */
 		JPanel group = new JPanel();
 		group.setName("main_group");
-		
-		
+
 		prescription = new JToggleButton("Prescription");
 		prescription.addActionListener(this);
 		if (!MainWindow.DEBUG)
@@ -63,19 +64,19 @@ public class MainMenu extends JPanel implements ActionListener {
 		settings.addActionListener(this);
 
 		/* content panes */
-		prescription_pane = new PrescriptionPane();
+		prescription_pane = new PrescriptionPane(database);
 		prescription_pane.setName("prescription_pane");
-		
-		medical_test_pane = new MedicalTestPane();
+
+		medical_test_pane = new MedicalTestPane(database);
 		medical_test_pane.setName("medical_test_pane");
-		
-		settings_pane = new Settings(this);
+
+		settings_pane = new Settings(this, database);
 		settings_pane.setName("settings_pane");
-		
-		patient_pane = new PatientPane();
+
+		patient_pane = new PatientPane(database);
 		patient_pane.setName("patient_pane");
-		
-		search_pane = new SearchPane();
+
+		search_pane = new SearchPane(database);
 		search_pane.setName("search_pane");
 
 		activeContent = settings_pane;
@@ -86,7 +87,7 @@ public class MainMenu extends JPanel implements ActionListener {
 		footer.setName("footer");
 		footer_label = new JLabel("No Connection");
 		footer_label.setForeground(Color.RED);
-		footer_label.setFont(MainWindow.getFont());
+		footer_label.setFont(MainWindow.FONT);
 		footer.add(footer_label);
 
 		/* populate window */
@@ -120,13 +121,11 @@ public class MainMenu extends JPanel implements ActionListener {
 
 		this.add(activeContent);
 
-		if (Database.isConnected()) {
-
+		if (database.isConnected()) {
 			footer_label.setText("Connected");
 			footer_label.setForeground(Color.GREEN);
 			footer.updateUI();
 		} else {
-
 			footer_label.setText("Not Connected");
 			footer_label.setForeground(Color.RED);
 			footer.updateUI();
@@ -160,5 +159,4 @@ public class MainMenu extends JPanel implements ActionListener {
 		search.setEnabled(true);
 		settings.setEnabled(true);
 	}
-
 }

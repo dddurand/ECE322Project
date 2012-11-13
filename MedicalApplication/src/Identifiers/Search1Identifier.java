@@ -2,34 +2,34 @@ package Identifiers;
 
 import java.sql.Date;
 
-public class Search1Identifier {
+public class Search1Identifier implements SearchIdentifier {
 
 	private String patientName;
 	private String testName;
 	private Date testDate;
 	private String result;
 
-	public Search1Identifier(String p_name, String t_name, Date t_date,
-			String t_result) {
+	public Search1Identifier(String p_name, String t_name, Date t_date, String t_result) {
 		this.patientName = p_name;
 		this.testName = t_name;
 		this.testDate = t_date;
 		this.result = t_result;
 	}
 
-	public String get_patientName() {
+	@Override
+	public String getPatientName() {
 		return this.patientName;
 	}
 
-	public String get_testName() {
+	public String getTestName() {
 		return this.testName;
 	}
 
-	public Date get_testDate() {
+	public Date getTestDate() {
 		return this.testDate;
 	}
 
-	public String get_result() {
+	public String getResult() {
 		return this.result;
 	}
 }

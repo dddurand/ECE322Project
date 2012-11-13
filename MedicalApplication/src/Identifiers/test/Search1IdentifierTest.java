@@ -21,22 +21,22 @@ public class Search1IdentifierTest {
 
 	@Test
 	public void testGetPatientName() {
-		assertEquals("someName", s1.get_patientName());
+		assertEquals("someName", s1.getPatientName());
 	}
 
 	@Test
 	public void testGetTestName() {
-		assertEquals("someTest", s1.get_testName());
+		assertEquals("someTest", s1.getTestName());
 	}
 
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetTestDate() {
-		assertEquals(new Date(2012, 11, 13), s1.get_testDate());
+		assertEquals(new Date(2012, 11, 13), s1.getTestDate());
 	}
 
 	@Test
 	public void testGetTestResult() {
-		assertEquals("passed", s1.get_result());
+		assertEquals("passed", s1.getResult());
 	}
 }

@@ -2,7 +2,7 @@ package Identifiers;
 
 import java.sql.Date;
 
-public class Search2Identifier {
+public class Search2Identifier implements SearchIdentifier {
 	private String patientName;
 	private String testName;
 	private Date prescribeDate;
@@ -13,15 +13,15 @@ public class Search2Identifier {
 		this.prescribeDate = p_date;
 	}
 
-	public String get_patientName() {
+	public String getPatientName() {
 		return this.patientName;
 	}
 
-	public String get_testName() {
+	public String getTestName() {
 		return this.testName;
 	}
 
-	public Date get_prescribeDate() {
+	public Date getPrescribeDate() {
 		return this.prescribeDate;
 	}
 }

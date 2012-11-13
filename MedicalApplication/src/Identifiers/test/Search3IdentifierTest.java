@@ -18,16 +18,16 @@ public class Search3IdentifierTest {
 
 	@Test
 	public void testGetPatientName() {
-		assertEquals("patient", s3.get_patientName());
+		assertEquals("patient", s3.getPatientName());
 	}
 
 	@Test
 	public void testGetAddress() {
-		assertEquals("address", s3.get_address());
+		assertEquals("address", s3.getAddress());
 	}
 
 	@Test
 	public void testGetPhoneNumber() {
-		assertEquals("78484", s3.get_phone());
+		assertEquals("78484", s3.getPhone());
 	}
 }

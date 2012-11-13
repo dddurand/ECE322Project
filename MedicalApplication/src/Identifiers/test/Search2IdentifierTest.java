@@ -21,17 +21,17 @@ public class Search2IdentifierTest {
 
 	@Test
 	public void testGetPatientName() {
-		assertEquals("patient", s2.get_patientName());
+		assertEquals("patient", s2.getPatientName());
 	}
 
 	@Test
 	public void testGetTestName() {
-		assertEquals("someTest", s2.get_testName());
+		assertEquals("someTest", s2.getTestName());
 	}
 
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetPrescribeDate() {
-		assertEquals(new Date(2010, 10, 13), s2.get_prescribeDate());
+		assertEquals(new Date(2010, 10, 13), s2.getPrescribeDate());
 	}
 }
