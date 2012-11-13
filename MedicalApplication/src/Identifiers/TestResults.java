@@ -1,9 +1,8 @@
 package Identifiers;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class TestResults {
-
 	private String patient_no;
 	private String Patientname;
 	private String DoctorName;
@@ -56,5 +55,4 @@ public class TestResults {
 	public String getRecordId() {
 		return this.record_id;
 	}
-
 }

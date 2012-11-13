@@ -1,9 +1,6 @@
 package Identifiers;
 
-import java.sql.Date;
-
 public class Search3Identifier {
-
 	private String patientName;
 	private String address;
 	private String phone;
@@ -25,5 +22,4 @@ public class Search3Identifier {
 	public String get_phone() {
 		return this.phone;
 	}
-
 }

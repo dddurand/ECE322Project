@@ -3,7 +3,6 @@ package Identifiers;
 import java.sql.Date;
 
 public class Search2Identifier {
-
 	private String patientName;
 	private String testName;
 	private Date prescribeDate;
@@ -25,5 +24,4 @@ public class Search2Identifier {
 	public Date get_prescribeDate() {
 		return this.prescribeDate;
 	}
-
 }
