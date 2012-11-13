@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import Database.Database;
 import GUI.MainWindow;
 import Identifiers.TestResults;
-import Identifiers.identifier;
+import Identifiers.Identifier;
 import Other.AutoCompleteJComboBox;
 
 @SuppressWarnings("serial")
@@ -199,19 +199,19 @@ public class MedicalTestPane extends JPanel implements ActionListener {
 	}
 //		
 		try{
-			PatientID = ((identifier) patient.getSelectedItem()).getId();
+			PatientID = ((Identifier) patient.getSelectedItem()).getId();
 		} catch (Exception e){
 			PatientID = "";
 		}
 		
 		try{
-			DoctorID = ((identifier) doctor.getSelectedItem()).getId();
+			DoctorID = ((Identifier) doctor.getSelectedItem()).getId();
 		} catch (Exception e){
 			DoctorID = "";
 		}
 
 		try{
-			TestID = ((identifier) test.getSelectedItem()).getId();
+			TestID = ((Identifier) test.getSelectedItem()).getId();
 		} catch (Exception e){
 			TestID = "";
 		}
@@ -406,7 +406,7 @@ public class MedicalTestPane extends JPanel implements ActionListener {
 					String Lab;
 					
 					try{
-						Lab = ((identifier) lab.getSelectedItem()).getName();
+						Lab = ((Identifier) lab.getSelectedItem()).getName();
 					} catch (Exception f){
 						JOptionPane.showMessageDialog(this,
 								"Invalid/No Lab Specified", "Failure",
