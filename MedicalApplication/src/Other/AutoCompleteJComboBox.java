@@ -8,12 +8,12 @@ import javax.swing.JComboBox;
 import javax.swing.text.JTextComponent;
 
 import Database.Database;
-import Identifiers.identifier;
+import Identifiers.Identifier;
 
 @SuppressWarnings("serial")
 public class AutoCompleteJComboBox extends JComboBox implements KeyListener {
 
-	static Vector<identifier> itemsList = new Vector<identifier>();
+	static Vector<Identifier> itemsList = new Vector<Identifier>();
 	JTextComponent editor;
 	char mode;
 
@@ -44,7 +44,7 @@ public class AutoCompleteJComboBox extends JComboBox implements KeyListener {
 
 			String name = editor.getName();
 
-			Vector<identifier> result = Database.partialNameQuery(query,
+			Vector<Identifier> result = Database.partialNameQuery(query,
 					this.mode);
 			itemsList.clear();
 
@@ -66,7 +66,7 @@ public class AutoCompleteJComboBox extends JComboBox implements KeyListener {
 
 	public void DefaultValue(String Thequery) {
 
-		Vector<identifier> result = Database.partialNameQuery(Thequery,
+		Vector<Identifier> result = Database.partialNameQuery(Thequery,
 				this.mode);
 		itemsList.clear();
 

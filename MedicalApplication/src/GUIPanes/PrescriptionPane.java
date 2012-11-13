@@ -6,7 +6,7 @@ import javax.swing.*;
 
 import Database.Database;
 import GUI.MainWindow;
-import Identifiers.identifier;
+import Identifiers.Identifier;
 import Other.AutoCompleteJComboBox;
 
 @SuppressWarnings("serial")
@@ -86,7 +86,7 @@ public class PrescriptionPane extends JPanel implements ActionListener {
 		//Check if patient is an identifier, if fails a warning returns error and terminates event
 		String PatientID;
 		try {
-			PatientID = ((identifier) patient.getSelectedItem()).getId();
+			PatientID = ((Identifier) patient.getSelectedItem()).getId();
 			;
 		} catch (Exception a) {
 			JOptionPane.showMessageDialog(this,
@@ -99,7 +99,7 @@ public class PrescriptionPane extends JPanel implements ActionListener {
 		//Check if testID is an identifier, if fails a warning returns error and terminates event
 		String testID;
 		try {
-			testID = ((identifier) test.getSelectedItem()).getId();
+			testID = ((Identifier) test.getSelectedItem()).getId();
 		} catch (Exception b) {
 			JOptionPane.showMessageDialog(this, "Please correctly select Test",
 					"Prescription Error", JOptionPane.ERROR_MESSAGE);
@@ -110,7 +110,7 @@ public class PrescriptionPane extends JPanel implements ActionListener {
 		//Check if DocID is an identifier, if fails a warning returns error and terminates event
 		String DocID;
 		try {
-			DocID = ((identifier) doc_id.getSelectedItem()).getId();
+			DocID = ((Identifier) doc_id.getSelectedItem()).getId();
 			;
 		} catch (Exception c) {
 			JOptionPane.showMessageDialog(this,
@@ -121,11 +121,11 @@ public class PrescriptionPane extends JPanel implements ActionListener {
 
 		
 		//Call to database to check if patient can particpate in test selected
-		if (Database.patientCanHaveTest((identifier) patient.getSelectedItem(),
-				(identifier) test.getSelectedItem())) {
+		if (Database.patientCanHaveTest((Identifier) patient.getSelectedItem(),
+				(Identifier) test.getSelectedItem())) {
 			//Call to database to create prescription
-			Database.insertPrescription((identifier) doc_id.getSelectedItem(),
-					(identifier) patient.getSelectedItem(), (identifier) test
+			Database.insertPrescription((Identifier) doc_id.getSelectedItem(),
+					(Identifier) patient.getSelectedItem(), (Identifier) test
 					.getSelectedItem());
 			//Success!
 			JOptionPane.showMessageDialog(this, "Prescription Accepted",

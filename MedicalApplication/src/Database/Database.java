@@ -16,7 +16,7 @@ import Identifiers.Search1Identifier;
 import Identifiers.Search2Identifier;
 import Identifiers.Search3Identifier;
 import Identifiers.TestResults;
-import Identifiers.identifier;
+import Identifiers.Identifier;
 
 public class Database {
 
@@ -153,8 +153,8 @@ public class Database {
 
 	}
 
-	public static void insertPrescription(identifier doctor,
-			identifier patient, identifier test) {
+	public static void insertPrescription(Identifier doctor,
+			Identifier patient, Identifier test) {
 
 		try {
 
@@ -188,7 +188,7 @@ public class Database {
 	/*
 	 * Function that checks if patient can have test performed.
 	 */
-	public static boolean patientCanHaveTest(identifier patient, identifier test) {
+	public static boolean patientCanHaveTest(Identifier patient, Identifier test) {
 
 		try {
 			Statement stmt = Database.DConnection.createStatement(
@@ -263,7 +263,7 @@ public class Database {
 	}
 
 	// UPDATED BY DUSTIN NOV 7
-	public static Vector<identifier> partialNameQuery(String partialQuery,
+	public static Vector<Identifier> partialNameQuery(String partialQuery,
 			char mode) {
 		try {
 			Statement stmt = Database.DConnection.createStatement(
@@ -308,13 +308,13 @@ public class Database {
 
 			}
 
-			Vector<identifier> results = new Vector<identifier>();
+			Vector<Identifier> results = new Vector<Identifier>();
 
 			int colNum = rset.getMetaData().getColumnCount();
 
 			while (rset.next()) {
 
-				results.addElement(new identifier(rset.getString(1), rset
+				results.addElement(new Identifier(rset.getString(1), rset
 						.getString(2), mode));
 
 			}
