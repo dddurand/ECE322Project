@@ -38,4 +38,13 @@ public class Identifier {
 	public String toString() {
 		return this.id + ": " + this.name;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof Identifier)) {
+			return false;
+		}
+		Identifier other = (Identifier) o;
+		return name.equals(other.name) && id.equals(other.id) && type == other.type;
+	}
 }

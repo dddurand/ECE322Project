@@ -11,20 +11,25 @@ import Database.Database;
 import Identifiers.Identifier;
 
 @SuppressWarnings("serial")
-public class AutoCompleteJComboBox extends JComboBox<String> implements KeyListener {
+public class AutoCompleteJComboBox extends JComboBox<Identifier> implements KeyListener {
 
-	private final Vector<Identifier> itemsList = new Vector<Identifier>();
+	private final Vector<Identifier> itemsList;
 	private final JTextComponent editor;
 	private char mode;
 
 	private final Database database;
 
-	public AutoCompleteJComboBox(Database database) {
-		super();
+	public AutoCompleteJComboBox(Database database, Vector<Identifier> itemsList) {
+		super(itemsList);
+		this.itemsList = itemsList;
 		this.database = database;
 		this.setEditable(true);
 		editor = (JTextComponent) this.getEditor().getEditorComponent();
 		editor.addKeyListener(this);
+	}
+
+	public Vector<Identifier> getItemsList() {
+		return itemsList;
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -52,13 +57,20 @@ public class AutoCompleteJComboBox extends JComboBox<String> implements KeyListe
 		this.mode = mode;
 	}
 
+	public char getMode() {
+		return mode;
+	}
+
 	public void DefaultValue(String Thequery) {
 		Vector<Identifier> result = database.partialNameQuery(Thequery, this.mode);
 		itemsList.clear();
-
 		for (int i = 0; i < result.size(); i++) {
 			itemsList.add(i, (result.get(i)));
-
 		}
+	}
+
+	public static AutoCompleteJComboBox createAutoCompleteBox(Database database) {
+		Vector<Identifier> identifiers = new Vector<Identifier>();
+		return new AutoCompleteJComboBox(database, identifiers);
 	}
 }

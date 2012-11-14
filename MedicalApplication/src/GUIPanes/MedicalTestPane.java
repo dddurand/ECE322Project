@@ -58,9 +58,9 @@ public class MedicalTestPane extends JPanel implements ActionListener {
 
 		this.setName("MedicalTestPane");
 
-		patient = new AutoCompleteJComboBox(database);
-		doctor = new AutoCompleteJComboBox(database);
-		test = new AutoCompleteJComboBox(database);
+		patient = AutoCompleteJComboBox.createAutoCompleteBox(database);
+		doctor = AutoCompleteJComboBox.createAutoCompleteBox(database);
+		test = AutoCompleteJComboBox.createAutoCompleteBox(database);
 		test.setMode('t');
 		doctor.setMode('d');
 		patient.setMode('p');
@@ -81,7 +81,7 @@ public class MedicalTestPane extends JPanel implements ActionListener {
 
 		/* Medical test mode */
 		record_id = new JTextField();
-		lab = new AutoCompleteJComboBox(database);
+		lab = AutoCompleteJComboBox.createAutoCompleteBox(database);
 		test_results = new JTextField();
 		SpinnerDateModel Spinner = new SpinnerDateModel();
 		date = new JSpinner(Spinner);

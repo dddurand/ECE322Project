@@ -32,7 +32,7 @@ public class PrescriptionPane extends JPanel implements ActionListener {
 		// Doctor
 		JLabel doctor_label = new JLabel("Employee");
 		doctor_label.setFont(MainWindow.FONT);
-		doc_id = new AutoCompleteJComboBox(database);
+		doc_id = AutoCompleteJComboBox.createAutoCompleteBox(database);
 		doc_id.setMode('d');
 
 		add(doctor_label);
@@ -41,7 +41,7 @@ public class PrescriptionPane extends JPanel implements ActionListener {
 		// Patient
 		JLabel patient_label = new JLabel("Patient");
 		patient_label.setFont(MainWindow.FONT);
-		patient = new AutoCompleteJComboBox(database);
+		patient = AutoCompleteJComboBox.createAutoCompleteBox(database);
 		patient.setMode('p');
 		add(patient_label);
 		add(patient);
@@ -49,7 +49,7 @@ public class PrescriptionPane extends JPanel implements ActionListener {
 		// Test
 		JLabel test_label = new JLabel("Test");
 		test_label.setFont(MainWindow.FONT);
-		test = new AutoCompleteJComboBox(database);
+		test = AutoCompleteJComboBox.createAutoCompleteBox(database);
 		add(test_label);
 		add(test);
 		test.setMode('t');
