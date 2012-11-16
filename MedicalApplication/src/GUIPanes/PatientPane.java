@@ -430,8 +430,8 @@ public class PatientPane extends JPanel implements ActionListener {
 			// Execute the Update
 			// System.out.println(sqldate.toString());
 			stmt.executeUpdate("UPDATE patient SET name = '" + patientName.getText()
-					+ "', address='" + patientAddress.getText() + "', birth_day=to_date('"
-					+ sqldate.toString() + "','YYYY-MM-DD'), phone = '" + patientPhone.getText()
+					+ "', address='" + patientAddress.getText() + "', birth_day=STR_TO_DATE('"
+					+ sqldate.toString() + "','%Y-%m-%d'), phone = '" + patientPhone.getText()
 					+ "' WHERE health_care_no = " + patientID.getText());
 
 			stmt.close();

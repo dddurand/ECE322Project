@@ -411,8 +411,8 @@ public class MedicalTestPane extends JPanel implements ActionListener {
 								((java.util.Date) date.getValue()).getTime());
 						stmt.executeUpdate("UPDATE test_record SET result = '"
 								+ test_results.getText() + "', medical_lab='" + Lab
-								+ "', test_date=to_date('" + sqldate.toString()
-								+ "','YYYY-MM-DD') WHERE test_id = " + selectedTest.getRecordId());
+								+ "', test_date=STR_TO_DATE('" + sqldate.toString()
+								+ "','%Y-%m-%d') WHERE test_id = " + selectedTest.getRecordId());
 						stmt.close();
 					} else {
 						JOptionPane.showMessageDialog(this, "Lab Cannot Conduct this Lab",

@@ -433,9 +433,9 @@ public class Database {
 						+ "r.type_id = t.type_id AND r.patient_no = p.health_care_no AND d.employee_no = r.employee_no AND d.health_care_no = p2.health_care_no "
 						+ "AND (p2.name LIKE '%" + searchItems.get(0)
 						+ "%' OR d.employee_no LIKE '%" + searchItems.get(0).toString()
-						+ "%') AND r.prescribe_date >= to_date('" + startDate.toString()
-						+ "', 'YYYY-MM-DD') " + "AND r.prescribe_date <= to_date('"
-						+ endDate.toString() + "', 'YYYY-MM-DD')";
+						+ "%') AND r.prescribe_date >= STR_TO_DATE('" + startDate.toString()
+						+ "', '%Y-%m-%d') " + "AND r.prescribe_date <= STR_TO_DATE('"
+						+ endDate.toString() + "', '%Y-%m-%d')";
 
 				rset = stmt.executeQuery(query);
 
