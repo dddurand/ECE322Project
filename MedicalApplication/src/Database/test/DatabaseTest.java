@@ -16,6 +16,7 @@ import org.junit.Test;
 
 import Database.Database;
 import Identifiers.Identifier;
+import Identifiers.PatientIdentifier;
 
 public class DatabaseTest {
 
@@ -106,4 +107,76 @@ public class DatabaseTest {
 		boolean result = db.patientCanHaveTest(patient, test);
 		assertTrue(result);
 	}
+
+	@Test
+	public void testPartialNameQuery_patient() {
+		Vector<Identifier> results = db.partialNameQuery("1000", 'p');
+		assertEquals(1, results.size());
+		assertEquals("Patient 1", results.get(0).getName());
+	}
+
+	@Test
+	public void testPartialNameQuery_doctor() {
+		Vector<Identifier> results = db.partialNameQuery("8412", 'p');
+		assertEquals(1, results.size());
+		assertEquals("Patient 3", results.get(0).getName());
+	}
+
+	@Test
+	public void testPartialNameQuery_test() {
+		Vector<Identifier> results = db.partialNameQuery("Blood Test", 't');
+		assertEquals(1, results.size());
+		assertEquals("101", results.get(0).getId());
+		assertEquals("Blood Test", results.get(0).getName());
+	}
+
+	@Test
+	public void testPartialNameQuery_lab() {
+		Vector<Identifier> results = db.partialNameQuery("Some Lab", 'l');
+		assertEquals(1, results.size());
+		assertEquals("1203547103", results.get(0).getId());
+		assertEquals("Some Lab", results.get(0).getName());
+	}
+
+	@Test
+	public void testPatientQuery_name() {
+		Vector<PatientIdentifier> patients = db.patientQuery("Patient 1");
+		assertEquals(1, patients.size());
+		assertEquals("1000", patients.get(0).ID());
+	}
+
+	@Test
+	public void testPatientQuery_id() {
+		Vector<PatientIdentifier> patients = db.patientQuery("1000");
+		assertEquals(1, patients.size());
+		assertEquals("Patient 1", patients.get(0).Name());
+	}
+
+	@Test
+	public void testCanConduct_true() {
+		assertTrue(db.canConduct("Some Lab", "102"));
+	}
+	
+	@Test
+	public void testCanConduct_false() {
+		assertTrue(!db.canConduct("Some Lab", "101"));
+	}
+	
+	@Test
+	public void testPatientUnique_true() {
+		assertTrue(db.patientUnique("9999"));
+	}
+	
+	@Test
+	public void testPatientUnique_false() {
+		assertTrue(!db.patientUnique("1000"));
+	}
+	
+	@Test
+	public void testGetTests() {
+		Vector<String> tests = db.getTests();
+		assertEquals(4, tests.size());
+	}
+	
+	// Still need to test searchPane and testRecordSearch
 }
